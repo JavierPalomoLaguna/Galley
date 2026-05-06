@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path('', views.home, name='index'),
-    path('home/', lambda request: redirect('/', permanent=True)),
+    #path('home/', lambda request: redirect('/', permanent=True)),
     path('politica-privacidad/', views.politica_privacidad, name='politica_privacidad'),
     path('aviso-legal/', views.aviso_legal, name='aviso_legal'),
 ]
