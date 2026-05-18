@@ -20,8 +20,4 @@ Disallow: /clientes/logout/
 Disallow: /password_reset/
 Disallow: /reset/
 
-# Bloquear paginas tienda
-Disallow: /tienda/producto/
-Disallow: /tienda/categoria/
-
 Sitemap: https://www.codigovivostudio.cloud/sitemap.xml
