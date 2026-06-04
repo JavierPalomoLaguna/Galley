@@ -1,1 +1,26 @@
-﻿staticfiles/
+﻿.vscode/
+
+# Archivos de entorno virtual
+venv/
+env/
+ENV/
+
+# Migraciones - SOLO ignorar archivos compilados, NO las migraciones .py
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# Archivos de Python egg-info
+*.egg-info/
+*.egg
+
+# Entornos de Jupyter
+.ipynb_checkpoints
+
+# Archivos de cobertura
+.coverage
+htmlcov/
+
+# Archivos de configuración local
+local_settings.py
+
+staticfiles/
