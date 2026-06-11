@@ -1,40 +1,43 @@
 from django.shortcuts import render
-from django.db.models import Subquery, OuterRef
-from tienda.models import Productos, CategoriaProducto
 
 
-# Create your views here.
 def home(request):
-    categorias = CategoriaProducto.objects.all()[:5]  # Limita a 5 categorías
-    productos_por_categoria = []
+    # Importación local para evitar dependencia circular
+    from servicios.models import Coctel, Categoria
 
-    for categoria in categorias:
-        producto = Productos.objects.filter(categoria=categoria, disponibilidad=True).first()
-        if producto:
-            productos_por_categoria.append(producto)
+    categorias = Categoria.objects.prefetch_related('cocteles').all()
+    categorias_ordenadas = []
+    for cat in categorias:
+        destacados = list(cat.cocteles.filter(destacado_en_index=True))
+        if destacados:
+            from django.utils.text import slugify
+            categorias_ordenadas.append({
+                'nombre': cat.nombre,
+                'slug': slugify(cat.nombre),
+                'cocteles': destacados,
+            })
 
     return render(request, 'ProyectoWebApp/index.html', {
-        'productos_por_categoria': productos_por_categoria
+        'categorias_ordenadas': categorias_ordenadas,
     })
 
 
 def politica_cookies(request):
-    context = {
+    return render(request, 'ProyectoWebApp/politica_cookies.html', {
         'title': 'Política de Cookies',
-        'meta_description': 'Política de cookies de Código Vivo Studio.'
-    }
-    return render(request, 'ProyectoWebApp/politica_cookies.html', context)
+        'meta_description': 'Política de cookies de Galley Pub.',
+    })
+
 
 def politica_privacidad(request):
-    context = {
+    return render(request, 'ProyectoWebApp/politica_privacidad.html', {
         'title': 'Política de Privacidad',
-        'meta_description': 'Política de privacidad de Código Vivo Studio. Información sobre protección de datos personales.'
-    }
-    return render(request, 'ProyectoWebApp/politica_privacidad.html', context)
+        'meta_description': 'Política de privacidad de Galley Pub.',
+    })
+
 
 def aviso_legal(request):
-    context = {
+    return render(request, 'ProyectoWebApp/aviso_legal.html', {
         'title': 'Aviso Legal',
-        'meta_description': 'Aviso legal de Código Vivo Studio. Condiciones de uso del sitio web y información legal.'
-    }
-    return render(request, 'ProyectoWebApp/aviso_legal.html', context)
+        'meta_description': 'Aviso legal de Galley Pub.',
+    })

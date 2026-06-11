@@ -1,0 +1,557 @@
+/* =============================================
+   GALLEY COCKTAIL BAR — galley.css
+   Paleta: negro profundo, dorado, blanco hueso
+   ============================================= */
+
+:root {
+    --gold:        #C9A84C;
+    --gold-light:  #E8C96E;
+    --gold-dark:   #9A7B2F;
+    --black:       #0A0A0A;
+    --dark:        #111111;
+    --dark-card:   #1A1A1A;
+    --dark-border: #2A2A2A;
+    --cream:       #F5F0E8;
+    --text-light:  #E8E0D0;
+    --text-muted:  #888880;
+    --radius:      14px;
+    --transition:  all 0.35s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--black);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* ── NAVBAR ── */
+.navbar-galley {
+    background: rgba(10, 10, 10, 0.97);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--dark-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.navbar-galley .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gold) !important;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.navbar-galley .nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 20px !important;
+    transition: var(--transition);
+}
+
+.navbar-galley .nav-link:hover,
+.navbar-galley .nav-link.active {
+    color: var(--gold) !important;
+}
+
+/* ── HERO ── */
+.hero-galley {
+    position: relative;
+    min-height: 92vh;
+    background:
+        linear-gradient(rgba(10,10,10,0.55), rgba(10,10,10,0.75)),
+        url('/static/ProyectoWebApp/img/galley-hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-galley .hero-content { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dark);
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.hero-galley h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+    margin-bottom: 20px;
+}
+
+.hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 16px 40px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-gold:hover {
+    background: var(--gold-light);
+    color: var(--black);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(201,168,76,0.4);
+}
+
+.btn-outline-gold {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 14px 38px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-outline-gold:hover {
+    background: var(--gold);
+    color: var(--black);
+    transform: translateY(-3px);
+}
+
+/* ── SEPARADOR ── */
+.gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 70px auto;
+    max-width: 300px;
+}
+
+/* ── SECCIONES ── */
+.seccion { padding: 90px 0; }
+.seccion-dark { background: var(--dark); }
+.seccion-darker { background: var(--black); }
+
+.section-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.9;
+}
+
+/* ── PILARES / FILOSOFÍA ── */
+.pilar-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    padding: 40px 30px;
+    text-align: center;
+    transition: var(--transition);
+    height: 100%;
+}
+
+.pilar-card:hover {
+    border-color: var(--gold-dark);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.pilar-icon {
+    width: 75px;
+    height: 75px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+}
+
+.pilar-icon i { font-size: 2rem; color: var(--black); }
+
+.pilar-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.pilar-card p { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+/* ── GALERÍA DESTACADOS ── */
+.coctel-gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    background: var(--dark-card);
+}
+
+.coctel-gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    filter: brightness(0.85);
+}
+
+.coctel-gallery-card:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.6);
+}
+
+.coctel-gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 30px 20px 20px;
+    transform: translateY(60%);
+    transition: var(--transition);
+}
+
+.coctel-gallery-card:hover .coctel-gallery-overlay {
+    transform: translateY(0);
+}
+
+.coctel-gallery-overlay h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+}
+
+.coctel-gallery-overlay .precio {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin: 0;
+}
+
+.badge-sin-alcohol {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 30px;
+}
+
+/* ── CARTA — SIDEBAR ── */
+.sidebar-galley {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: var(--dark);
+    border-right: 1px solid var(--dark-border);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar-brand {
+    padding: 30px 20px;
+    border-bottom: 1px solid var(--dark-border);
+    text-align: center;
+}
+
+.sidebar-brand .brand-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar-brand .brand-sub {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 5px;
+    display: block;
+}
+
+.sidebar-nav { flex: 1; padding: 20px 0; }
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 25px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i { font-size: 1rem; width: 18px; text-align: center; }
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    color: var(--gold);
+    border-left-color: var(--gold);
+    background: rgba(201,168,76,0.07);
+}
+
+.sidebar-footer {
+    padding: 20px 25px;
+    border-top: 1px solid var(--dark-border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.sidebar-footer a { color: var(--gold); text-decoration: none; }
+
+/* ── CARTA CONTENIDO ── */
+.carta-content { margin-left: 240px; min-height: 100vh; background: var(--black); }
+
+.carta-header {
+    background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)),
+                url('/static/ProyectoWebApp/img/galley-hero.jpg') center/cover;
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.carta-header h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.carta-header p { color: var(--text-muted); letter-spacing: 3px; font-size: 0.9rem; margin-top: 12px; }
+
+/* Navegación de categorías en carta */
+.carta-nav-categorias {
+    background: var(--dark);
+    border-bottom: 1px solid var(--dark-border);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.categorias-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 4px 0;
+    scrollbar-width: none;
+}
+
+.categorias-scroll::-webkit-scrollbar { display: none; }
+
+.categoria-nav-link {
+    padding: 8px 20px;
+    background: transparent;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid var(--dark-border);
+    transition: var(--transition);
+}
+
+.categoria-nav-link:hover {
+    color: var(--gold);
+    border-color: var(--gold-dark);
+    background: rgba(201,168,76,0.07);
+}
+
+/* Sección de categoría */
+.categoria-section { margin-bottom: 70px; scroll-margin-top: 80px; }
+
+.categoria-titulo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.categoria-line {
+    height: 2px;
+    width: 60px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 35px;
+    border-radius: 2px;
+}
+
+/* Tarjeta de cóctel en carta */
+.coctel-carta-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    height: 200px;
+    transition: var(--transition);
+    margin-bottom: 20px;
+}
+
+.coctel-carta-card:hover {
+    border-color: var(--gold-dark);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+}
+
+.coctel-carta-img {
+    width: 200px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.coctel-carta-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.coctel-carta-card:hover .coctel-carta-img img { transform: scale(1.08); }
+
+.coctel-carta-info {
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.coctel-carta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.coctel-carta-nombre {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.coctel-carta-precio {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+.coctel-carta-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
+}
+
+/* ── FOOTER ── */
+.footer-galley {
+    background: var(--dark);
+    border-top: 1px solid var(--dark-border);
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.footer-galley a { color: var(--gold); text-decoration: none; }
+.footer-galley a:hover { color: var(--gold-light); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 991px) {
+    .sidebar-galley { width: 100%; height: auto; position: relative; }
+    .carta-content { margin-left: 0; }
+    .sidebar-nav { display: flex; overflow-x: auto; padding: 0; }
+    .sidebar-link { flex-direction: column; padding: 12px 16px; gap: 4px; font-size: 0.7rem; }
+    .sidebar-footer { display: none; }
+}
+
+@media (max-width: 767px) {
+    .coctel-carta-card { height: auto; flex-direction: column; }
+    .coctel-carta-img { width: 100%; height: 200px; }
+    .hero-galley { min-height: 70vh; }
+    .hero-galley h1 { letter-spacing: 3px; }
+}

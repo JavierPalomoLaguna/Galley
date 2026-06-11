@@ -1,51 +1,44 @@
 from django.contrib import admin
-from .models import Servicio, Alergeno, Reserva
+from .models import Categoria, Coctel, Ingrediente
 
 
-class AlergenoAdmin(admin.ModelAdmin):
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'orden', 'num_cocteles')
+    list_editable = ('orden',)
+    ordering = ('orden', 'nombre')
+
+    def num_cocteles(self, obj):
+        return obj.cocteles.count()
+    num_cocteles.short_description = 'Cócteles'
+
+
+@admin.register(Ingrediente)
+class IngredienteAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'codigo')
-    list_filter = ('codigo',)
 
-class ServicioAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'categoria', 'precio', 'created', 'updated')
-    list_display = ('titulo', 'categoria', 'precio', 'destacado_en_index', 'created')
+
+@admin.register(Coctel)
+class CoctelAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'categoria', 'precio', 'sin_alcohol', 'destacado_en_index', 'created')
+    list_filter = ('categoria', 'sin_alcohol', 'destacado_en_index')
     search_fields = ('titulo', 'contenido')
     readonly_fields = ('created', 'updated')
-    filter_horizontal = ('alergenos',)  # Selector múltiple más amigable
-    list_editable = ('destacado_en_index',)
-    
+    filter_horizontal = ('alergenos',)
+    list_editable = ('destacado_en_index', 'sin_alcohol')
+
     fieldsets = (
         ('Información básica', {
-            'fields': ('titulo', 'contenido', 'categoria', 'precio')
+            'fields': ('titulo', 'contenido', 'categoria', 'precio', 'sin_alcohol')
         }),
         ('Imagen y alérgenos', {
             'fields': ('imagen', 'alergenos')
+        }),
+        ('Visibilidad', {
+            'fields': ('destacado_en_index',)
         }),
         ('Metadatos', {
             'fields': ('created', 'updated'),
             'classes': ('collapse',)
         }),
     )
-
-
-class ReservaAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'telefono', 'fecha', 'hora', 'numero_personas', 'estado', 'created')
-    list_filter = ('estado', 'fecha', 'created')
-    search_fields = ('nombre', 'telefono', 'email')
-    readonly_fields = ('created', 'updated')
-    list_editable = ('estado',)
-    
-    fieldsets = (
-        ('Información de la reserva', {
-            'fields': ('nombre', 'telefono', 'email', 'fecha', 'hora', 'numero_personas', 'comentarios')
-        }),
-        ('Estado y seguimiento', {
-            'fields': ('estado', 'created', 'updated'),
-            'classes': ('collapse',)
-        }),
-    )
-
-
-admin.site.register(Servicio, ServicioAdmin)
-admin.site.register(Alergeno, AlergenoAdmin)
-admin.site.register(Reserva, ReservaAdmin)

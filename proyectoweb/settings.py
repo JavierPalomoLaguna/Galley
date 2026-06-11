@@ -61,20 +61,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',      
-    'django.contrib.sitemaps',   
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'ProyectoWebApp',
     'servicios',
     'blog',
     'contacto',
-    'tienda',
-    'carro',
-    'clientes',
-    'ventas.apps.VentasConfig',
     'crispy_forms',
-    'crispy_bootstrap4',    
+    'crispy_bootstrap4',
 ]
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MIDDLEWARE = [
@@ -100,12 +95,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'carro.context_processor.importe_total_carro',
-                'carro.context_processor.productos_total_carro',
-                'carro.context_processor.gastos_envio_carro',
-                'carro.context_processor.total_con_envio_carro',
-                'carro.context_processor.envio_gratis_info',
-                'clientes.context_processors.cliente_context',
             ],
         },
     },

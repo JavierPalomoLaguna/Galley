@@ -5,76 +5,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{% block meta_title %}Blog | Código Vivo Studio{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}Blog de Código Vivo Studio{% endblock %}">
+  <title>{% block meta_title %}Blog | Galley Pub{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Blog de Galley Pub, coctelería en Candás, Asturias{% endblock %}">
   <meta name="robots" content="index, follow">
 
-  <link rel="canonical" href="https://www.codigovivostudio.cloud{{ request.path }}">
-  <link rel="stylesheet" href="{% static 'ProyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/gestion.css' %}">
-  <link rel="stylesheet" href="{% static 'ProyectoWebApp/css/blog.css' %}">
+  <link rel="canonical" href="https://www.galleypub.es{{ request.path }}">
+  <link href="{% static 'ProyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="{% static 'ProyectoWebApp/css/galley.css' %}" rel="stylesheet">
   <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
-<body style="background: #f8f9fa;">
+<body style="background: var(--dark);">
 
-  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" style="background-color: rgba(17, 17, 17, 0.95);">
+  <nav class="navbar navbar-galley navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand text-uppercase text-expanded font-weight-bold" href="/" style="font-size: 1.5rem;">
-        Código Vivo Studio
-      </a>
-      <a href="tel:+34613362840" class="d-lg-none" style="color: white; text-decoration: none; font-size: 1.3rem; margin-left: 15px;">
-        <i class="fas fa-phone"></i>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBlog" aria-controls="navbarBlog" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" href="{% url 'index' %}">GALLEY</a>
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarBlog"
+              style="color: var(--gold);">
+        <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarBlog">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item px-lg-3">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'index' %}">Inicio</a>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
           </li>
-          <li class="nav-item px-lg-3">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'index_restaurante' %}">Restaurante</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'carta_cocteles' %}">Carta</a>
           </li>
-          <li class="nav-item px-lg-3">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'tienda' %}">Tienda</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
           </li>
-          <li class="nav-item px-lg-3">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'contacto' %}">Contacto</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
-          <li class="nav-item px-lg-3 active">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}">Blog</a>
+          <li class="nav-item ms-lg-3">
+            <a href="tel:+34985870304" class="nav-link" style="color: var(--gold) !important;">
+              <i class="fas fa-phone me-1"></i> 985 87 03 04
+            </a>
           </li>
         </ul>
-        <a href="tel:+34613362840" class="d-none d-lg-block" style="color: white; text-decoration: none; font-size: 1.1rem; font-weight: 500;">
-          <i class="fas fa-phone" style="margin-right: 8px;"></i> 📞 613 36 28 40
-        </a>
       </div>
     </div>
   </nav>
 
   {% block content %}{% endblock %}
 
-  <footer style="background: #2c3e50; color: white; padding: 40px 0; text-align: center; margin-top: 60px;">
+  <footer class="footer-galley">
     <div class="container">
-      <p class="m-0 mt-3">
-        <a href="{% url 'politica_privacidad' %}" class="link text-white">Política de privacidad</a>
-        <a href="{% url 'aviso_legal' %}" class="link text-white">Aviso legal</a>
-        <a href="{% url 'politica_cookies' %}" class="link text-white">Cookies</a>
+      <p class="mb-2" style="font-size:1.5rem;font-weight:900;letter-spacing:5px;color:var(--gold);">
+        GALLEY
       </p>
-      <p class="m-0 mt-3" style="font-size: 1.2rem;">
-          <a href="tel:+34613362840" style="color: white; text-decoration: none;">
-              <i class="fas fa-phone"></i> 📞 613 36 28 40
-          </a>
+      <p class="mb-1" style="font-size: 0.85rem;">
+        C. Valdés Pumarino, 17 · 33430 Candás, Asturias ·
+        <a href="tel:+34985870304">985 87 03 04</a>
       </p>
-      <p>&copy; 2025 Código Vivo Studio. Todos los derechos reservados.</p>
-      <p class="m-0 mt-3 small" style="opacity: 0.7;">
-        <a href="/admin/" class="text-light" title="Panel de administración">⚙️⚙️⚙️</a>
-      </p> 
+      <p class="mb-3">
+        <a href="{% url 'politica_privacidad' %}">Política de privacidad</a> ·
+        <a href="{% url 'aviso_legal' %}">Aviso legal</a> ·
+        <a href="{% url 'politica_cookies' %}">Cookies</a>
+      </p>
+      <p>&copy; 2026 Galley Pub · Candás, Asturias. Todos los derechos reservados.</p>
+      <p class="mt-2 small">
+        <a href="/admin/" style="color:var(--dark-border);" title="Panel de administración">⚙️⚙️⚙️</a>
+      </p>
     </div>
   </footer>
 
   <script src="{% static 'ProyectoWebApp/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'ProyectoWebApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
