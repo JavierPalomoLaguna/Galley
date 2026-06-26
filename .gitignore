@@ -1,4 +1,38 @@
-﻿.vscode/
+﻿# Archivos sensibles
+.env
+.env.local
+.env.production
+
+# Archivos de base de datos local
+db.sqlite3
+*.sqlite3
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Archivos de medios subidos
+/media/
+
+# Archivos estáticos recogidos (PRODUCCIÓN)
+/staticfiles/
+
+# Archivos de logs
+*.log
+logs/
+
+# Archivos temporales de sistema
+*.swp
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Archivos de VS Code
+.vscode/
 
 # Archivos de entorno virtual
 venv/
