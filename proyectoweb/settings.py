@@ -23,6 +23,9 @@ if ENV == 'production':
     SECURE_REFERRER_POLICY = 'same-origin'
     ALLOWED_HOSTS = ['codigovivostudio.cloud', 'www.codigovivostudio.cloud', '72.61.94.146']
     CSRF_TRUSTED_ORIGINS = ['https://codigovivostudio.cloud', 'https://www.codigovivostudio.cloud']
+    # Configuración para funcionar en /galley/
+    FORCE_SCRIPT_NAME = '/galley'
+    USE_X_FORWARDED_HOST = True
     
     # Configuración automática del Site para producción
     try:
@@ -143,7 +146,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Archivos estáticos
-STATIC_URL = '/static/'
+STATIC_URL = '/galley/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if ENV == 'production':
@@ -157,7 +160,7 @@ else:
     ]
 
 # Archivos multimedia
-MEDIA_URL = '/media/'
+MEDIA_URL = '/galley/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Añadir barra final automáticamente a las URLs
 APPEND_SLASH = True
