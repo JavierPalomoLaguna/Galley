@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud inválida · Galley Pub</title>
+    <link href="{% static 'ProyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="{% static 'ProyectoWebApp/css/galley.css' %}" rel="stylesheet">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-card) 100%);
+            padding: 20px;
+        }
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            color: #f5a623;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+    {% load static %}
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <div class="error-code">400</div>
+            <h1 class="error-title">Solicitud inválida</h1>
+            <p class="error-description">
+                La solicitud que enviaste contiene datos inválidos o incompletos.
+                Por favor, revisa y vuelve a intentarlo.
+            </p>
+            {% if error %}
+            <p class="error-description" style="font-size: 0.95rem; color: var(--gold);">
+                {{ error }}
+            </p>
+            {% endif %}
+            <div class="error-actions">
+                <a href="{% url 'index' %}" class="btn-gold">
+                    <i class="fas fa-home me-2"></i> Ir al inicio
+                </a>
+                <a href="javascript:window.history.back();" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-left me-2"></i> Volver
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

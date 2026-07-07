@@ -1,54 +1,99 @@
 {% extends 'blog/base_blog.html' %}
 {% load static %}
-{% block meta_title %}{{ post.titulo }} | Código Vivo Studio{% endblock %}
+{% block meta_title %}{{ post.titulo }} | Galley Blog{% endblock %}
 {% block meta_description %}{{ post.contenido|truncatechars:155 }}{% endblock %}
 
 {% block content %}
+
 <div class="post-container">
 
+  <!-- VOLVER AL BLOG -->
   <div class="post-volver">
-    <a href="{% url 'blog' %}">← Volver al blog</a>
+    <a href="{% url 'blog' %}">
+      <i class="fas fa-arrow-left"></i> Volver al blog
+    </a>
   </div>
 
+  <!-- IMAGEN DESTACADA -->
   {% if post.imagen %}
   <div class="post-imagen">
     <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}">
   </div>
   {% endif %}
 
+  <!-- META INFORMACIÓN -->
   <div class="post-meta">
-    {{ post.created|date:"d/m/Y" }} · 
-    {% for cat in post.categorias.all %}{{ cat.nombre }}{% endfor %} 
+    <i class="fas fa-calendar-alt me-2"></i>{{ post.created|date:"d/m/Y" }} 
+    {% if post.categorias.all %}
+      <span style="margin: 0 8px;">·</span>
+      {% for cat in post.categorias.all %}
+        <span style="background: rgba(212,175,55,0.1); padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; margin-right: 8px;">{{ cat.nombre }}</span>
+      {% endfor %}
+    {% endif %}
   </div>
 
+  <!-- TÍTULO -->
   <h1>{{ post.titulo }}</h1>
 
+  <!-- CONTENIDO -->
   <div class="post-contenido">
     {{ post.contenido|safe|linebreaks }}
   </div>
 
+  <!-- NAVEGACIÓN ENTRE ARTÍCULOS -->
+  <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--dark-border);">
+    <div style="display: flex; justify-content: space-between; gap: 40px;">
+      <!-- ANTERIOR -->
+      <div style="flex: 1;">
+        {% comment %} Aquí irían links a posts anteriores/siguientes {% endcomment %}
+      </div>
+      <!-- SIGUIENTE -->
+      <div style="flex: 1; text-align: right;">
+        {% comment %} Links para navegación entre posts {% endcomment %}
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="{% url 'blog' %}" class="btn-gold" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; text-decoration: none; color: white; background: var(--gold); border-radius: 6px; font-weight: 700;">
+        <i class="fas fa-list me-1"></i> Volver al blog
+      </a>
+    </div>
+  </div>
+
 </div>
+
+<!-- JSON-LD SCHEMA -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "{{ post.titulo }}",
-  "description": "{{ post.contenido|truncatechars:155 }}",
+  "description": "{{ post.contenido|truncatechars:155|escapejs }}",
   "datePublished": "{{ post.created|date:'Y-m-d' }}",
   "dateModified": "{{ post.updated|date:'Y-m-d' }}",
   "author": {
     "@type": "Organization",
-    "name": "Código Vivo Studio"
+    "name": "Galley Pub"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Código Vivo Studio",
-    "url": "https://www.codigovivostudio.cloud"
+    "name": "Galley Pub",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.galleypub.es/static/favicon.ico"
+    }
   },
-  "url": "https://www.codigovivostudio.cloud{{ request.path }}"
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.galleypub.es{{ request.path }}"
+  }
   {% if post.imagen %}
-  ,"image": "https://www.codigovivostudio.cloud{{ post.imagen.url }}"
+  ,"image": {
+    "@type": "ImageObject",
+    "url": "https://www.galleypub.es{{ post.imagen.url }}"
+  }
   {% endif %}
 }
 </script>
+
 {% endblock %}

@@ -80,19 +80,21 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-galley navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'index' %}">GALLEY</a>
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <i class="fas fa-glass-cheers me-2"></i> GALLEY
+      </a>
       <button class="navbar-toggler border-0" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navGalley"
+              data-bs-toggle="collapse" data-bs-target="#navbarBlog"
               style="color: var(--gold);">
         <i class="fas fa-bars"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navGalley">
+      <div class="collapse navbar-collapse" id="navbarBlog">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'index' %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'index_cocteleria' %}">Carta</a>
+            <a class="nav-link" href="{% url 'carta_cocteles' %}">Carta</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog' %}">Blog</a>
@@ -121,8 +123,33 @@
           <i class="fas fa-wine-glass-alt me-2"></i> Ver carta
         </a>        
       </div>
+      <!-- Imágenes: Candás antiguo / Generaciones (insertadas dentro del hero) -->
+      <div class="container mt-5">
+        <div class="row g-4">
+          <div class="col-12 col-md-6 mb-4">
+            <div class="pilar-card h-100 overflow-hidden" style="padding: 0;">
+              <img src="{% static 'ProyectoWebApp/img/candas antiguo.jpg' %}" alt="Candás antiguo" class="img-fluid w-100" style="height: 280px; object-fit: cover;">
+              <div class="p-3" style="background: rgba(0,0,0,0.25);">
+                <h4 class="mb-1">Candás antiguo</h4>
+                <p class="mb-0" style="color: var(--text-muted); font-size:0.95rem;">Una mirada a la historia y al origen del lugar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 mb-4">
+            <div class="pilar-card h-100 overflow-hidden" style="padding: 0;">
+              <img src="{% static 'ProyectoWebApp/img/Generaciónes Galley.jpg' %}" alt="Generaciones de Galley" class="img-fluid w-100" style="height: 280px; object-fit: cover;">
+              <div class="p-3" style="background: rgba(0,0,0,0.25);">
+                <h4 class="mb-1">Generaciones Galley</h4>
+                <p class="mb-0" style="color: var(--text-muted); font-size:0.95rem;">La tradición familiar que sigue viva en cada visita.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- removed duplicate standalone section, images moved inside hero -->
 
   <!-- BANDA DE PREMIOS -->
   <div style="background: var(--gold); padding: 18px 0;">
@@ -168,28 +195,28 @@
         </div>
         <div class="col-lg-6">
           <div class="row g-3">
-            <div class="col-6">
+            <div class="col-6 mb-4">
               <div class="pilar-card text-center">
                 <div class="pilar-icon mx-auto mb-3"><i class="fas fa-trophy"></i></div>
                 <h4 style="font-size: 2.2rem; color: var(--gold); margin-bottom: 4px;">3</h4>
                 <p style="font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;">Premios</p>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-4">
               <div class="pilar-card text-center">
                 <div class="pilar-icon mx-auto mb-3"><i class="fas fa-glass-cheers"></i></div>
                 <h4 style="font-size: 2.2rem; color: var(--gold); margin-bottom: 4px;">1977</h4>
                 <p style="font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;">Desde siempre</p>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-4">
               <div class="pilar-card text-center">
                 <div class="pilar-icon mx-auto mb-3"><i class="fas fa-comments"></i></div>
                 <h4 style="font-size: 2.2rem; color: var(--gold); margin-bottom: 4px;">156</h4>
                 <p style="font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;">Reseñas</p>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-4">
               <div class="pilar-card text-center">
                 <div class="pilar-icon mx-auto mb-3"><i class="fas fa-dog"></i></div>
                 <h4 style="font-size: 1rem; color: var(--gold); margin-bottom: 4px;">Pet<br>Friendly</h4>
@@ -202,7 +229,43 @@
     </div>
   </section>
 
-  <div class="gold-divider"></div>
+  <section class="seccion seccion-darker">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">Ambientes</span>
+        <h2 class="section-title">Ambientes únicos</h2>
+        <p class="section-description mx-auto" style="max-width: 720px; margin-top: 12px;">
+          Un espacio acogedor y versátil, pensado para disfrutar de una buena copa y encontrar el rincón perfecto para cada ocasión.
+        </p>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-md-4 mb-4">
+          <div class="pilar-card h-100 overflow-hidden" style="padding: 0;">
+            <img src="{% static 'ProyectoWebApp/img/Terraza1.jpg' %}" alt="Terraza del pub" class="img-fluid w-100" style="height: 240px; object-fit: cover;" loading="lazy">
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-4">
+          <div class="pilar-card h-100 overflow-hidden" style="padding: 0;">
+            <img src="{% static 'ProyectoWebApp/img/interior.webp' %}" alt="Interior del pub" class="img-fluid w-100" style="height: 240px; object-fit: cover;" loading="lazy">
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-4">
+          <div class="pilar-card h-100 overflow-hidden" style="padding: 0;">
+            <img src="{% static 'ProyectoWebApp/img/interior con luces.jpg' %}" alt="Interior con luces" class="img-fluid w-100" style="height: 240px; object-fit: cover;" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="{% url 'carta_cocteles' %}" class="btn-gold">
+          <i class="fas fa-wine-glass-alt me-2"></i> Descubrir la carta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-divider" style="margin: 40px 0;"></div>
 
   <!-- PREMIOS -->
   <section class="seccion seccion-darker">
@@ -212,7 +275,7 @@
         <h2 class="section-title">Como le parece poco un premio,<br>nos trae tres</h2>
       </div>
       <div class="row g-4 justify-content-center">
-        <div class="col-md-4">
+        <div class="col-12 col-md-4 mb-4">
           <div class="pilar-card text-center">
             <div class="pilar-icon mx-auto"><i class="fas fa-trophy"></i></div>
             <h4 class="mt-4">Mejor Gin Tonic<br>de Asturias</h4>
@@ -220,7 +283,7 @@
             asturiana de autor. Un Gin Tonic que combina producto local con técnica impecable.</p>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-md-4 mb-4">
           <div class="pilar-card text-center">
             <div class="pilar-icon mx-auto"><i class="fas fa-palette"></i></div>
             <h4 class="mt-4">Mejor Decoración<br>Coctelería</h4>
@@ -228,7 +291,7 @@
             completa, más allá de lo que hay en la copa.</p>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-md-4 mb-4">
           <div class="pilar-card text-center">
             <div class="pilar-icon mx-auto"><i class="fas fa-cocktail"></i></div>
             <h4 class="mt-4">Mejor<br>Bartender</h4>
@@ -240,7 +303,7 @@
     </div>
   </section>
 
-  <div class="gold-divider"></div>
+  <div class="gold-divider" style="margin: 40px 0;"></div>
 
   <!-- CÓCTELES DESTACADOS -->
   {% if categorias_ordenadas %}
@@ -253,11 +316,11 @@
           Clásicos perfectamente ejecutados y creaciones propias con los mejores destilados.
         </p>
       </div>
-      <div class="row g-3">
+      <div class="row g-3 justify-content-center coctel-gallery-row">
         {% for categoria in categorias_ordenadas %}
           {% for coctel in categoria.cocteles %}
-          <div class="col-6 col-md-4 col-lg-3">
-            <div class="coctel-gallery-card">
+          <div class="col-6 col-md-4 col-lg-3 d-flex justify-content-center">
+            <div class="coctel-gallery-card" style="width:100%; max-width: 260px;">
               <img src="{{ coctel.imagen.url }}" alt="{{ coctel.titulo }}" loading="lazy">
               {% if coctel.sin_alcohol %}
               <span class="badge-sin-alcohol">Sin alcohol</span>
@@ -280,7 +343,7 @@
       </div>
     </div>
   </section>
-  <div class="gold-divider"></div>
+  <div class="gold-divider" style="margin: 40px 0;"></div>
   {% endif %}
 
   <!-- RESEÑAS -->
@@ -291,7 +354,7 @@
         <h2 class="section-title">4,1★ · 156 reseñas en Google</h2>
       </div>
       <div class="row g-4">
-        <div class="col-md-6">
+        <div class="col-12 col-md-6 mb-4">
           <div class="pilar-card">
             <div class="d-flex gap-1 mb-3" style="color: var(--gold);">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -306,7 +369,7 @@
             </p>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-md-6 mb-4">
           <div class="pilar-card">
             <div class="d-flex gap-1 mb-3" style="color: var(--gold);">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -324,7 +387,7 @@
     </div>
   </section>
 
-  <div class="gold-divider"></div>
+  <div class="gold-divider" style="margin: 40px 0;"></div>
 
   <!-- LOCALIZACIÓN -->
   <section class="seccion seccion-dark">
@@ -470,8 +533,23 @@
 
   <!-- SCRIPTS -->
   <script src="{% static 'ProyectoWebApp/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'ProyectoWebApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'js/cookies.js' %}"></script>
+
+  <script>
+    (function(){
+      if(!('ontouchstart' in window)) return;
+      document.addEventListener('touchstart', function(e){
+        var card = e.target.closest('.coctel-gallery-card');
+        if(card){
+          document.querySelectorAll('.coctel-gallery-card.touch-active').forEach(function(c){ if(c!==card) c.classList.remove('touch-active'); });
+          card.classList.toggle('touch-active');
+        } else {
+          document.querySelectorAll('.coctel-gallery-card.touch-active').forEach(function(c){ c.classList.remove('touch-active'); });
+        }
+      }, {passive: true});
+    })();
+  </script>
 
 </body>
 </html>

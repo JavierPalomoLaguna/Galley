@@ -5,21 +5,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{% block meta_title %}Blog | Galley Pub{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}Blog de Galley Pub, coctelería en Candás, Asturias{% endblock %}">
+  <title>{% block meta_title %}Blog | Galley Pub - Coctelería en Candás{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Descubre artículos sobre cócteles, novedades de Galley Pub y tendencias en coctelería{% endblock %}">
   <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% block og_title %}Blog | Galley Pub{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Artículos sobre cócteles y coctelería{% endblock %}">
+  <meta property="og:url" content="https://www.galleypub.es{{ request.path }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}Blog | Galley Pub{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Artículos de Galley{% endblock %}">
 
   <link rel="canonical" href="https://www.galleypub.es{{ request.path }}">
   <link href="{% static 'ProyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="{% static 'ProyectoWebApp/css/galley.css' %}" rel="stylesheet">
+  <link href="{% static 'ProyectoWebApp/css/blog.css' %}" rel="stylesheet">
   <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
-<body style="background: var(--dark);">
 
+<body>
+
+  <!-- NAVBAR -->
   <nav class="navbar navbar-galley navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'index' %}">GALLEY</a>
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <i class="fas fa-glass-cheers me-2"></i> GALLEY
+      </a>
       <button class="navbar-toggler border-0" type="button"
               data-bs-toggle="collapse" data-bs-target="#navbarBlog"
               style="color: var(--gold);">
@@ -33,8 +50,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'carta_cocteles' %}">Carta</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'blog' %}">Blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
@@ -51,24 +68,54 @@
 
   {% block content %}{% endblock %}
 
+  <!-- FOOTER -->
   <footer class="footer-galley">
     <div class="container">
-      <p class="mb-2" style="font-size:1.5rem;font-weight:900;letter-spacing:5px;color:var(--gold);">
-        GALLEY
-      </p>
-      <p class="mb-1" style="font-size: 0.85rem;">
-        C. Valdés Pumarino, 17 · 33430 Candás, Asturias ·
-        <a href="tel:+34985870304">985 87 03 04</a>
-      </p>
-      <p class="mb-3">
-        <a href="{% url 'politica_privacidad' %}">Política de privacidad</a> ·
-        <a href="{% url 'aviso_legal' %}">Aviso legal</a> ·
-        <a href="{% url 'politica_cookies' %}">Cookies</a>
-      </p>
-      <p>&copy; 2026 Galley Pub · Candás, Asturias. Todos los derechos reservados.</p>
-      <p class="mt-2 small">
-        <a href="/admin/" style="color:var(--dark-border);" title="Panel de administración">⚙️⚙️⚙️</a>
-      </p>
+      <div class="row g-5 mb-5">
+        <div class="col-md-4">
+          <p style="font-size:1.4rem;font-weight:900;letter-spacing:5px;color:var(--gold);margin-bottom:15px;">
+            GALLEY
+          </p>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.8;">
+            Coctelería artesanal en Candás, Asturias. Destilados de primera calidad, técnica clásica y creatividad contemporánea.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5 style="color:var(--gold);font-weight:700;margin-bottom:15px;">Contacto</h5>
+          <p style="font-size:0.9rem;color:var(--text-muted);">
+            <i class="fas fa-map-marker-alt me-2" style="color:var(--gold);"></i>
+            C. Valdés Pumarino, 17<br>
+            33430 Candás, Asturias
+          </p>
+          <p style="font-size:0.9rem;color:var(--text-muted);">
+            <i class="fas fa-phone me-2" style="color:var(--gold);"></i>
+            <a href="tel:+34985870304" style="color:var(--text-muted);text-decoration:none;">985 87 03 04</a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5 style="color:var(--gold);font-weight:700;margin-bottom:15px;">Enlaces</h5>
+          <ul style="list-style:none;padding:0;margin:0;font-size:0.9rem;">
+            <li class="mb-2"><a href="{% url 'index' %}" style="color:var(--text-muted);text-decoration:none;">Inicio</a></li>
+            <li class="mb-2"><a href="{% url 'carta_cocteles' %}" style="color:var(--text-muted);text-decoration:none;">Carta de Cócteles</a></li>
+            <li class="mb-2"><a href="{% url 'blog' %}" style="color:var(--text-muted);text-decoration:none;">Blog</a></li>
+            <li><a href="{% url 'contacto' %}" style="color:var(--text-muted);text-decoration:none;">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr style="border-color:var(--dark-border);margin:30px 0;">
+
+      <div style="text-align:center;font-size:0.85rem;color:var(--text-muted);">
+        <p class="mb-2">
+          <a href="{% url 'politica_privacidad' %}" style="color:var(--text-muted);text-decoration:none;">Privacidad</a> ·
+          <a href="{% url 'aviso_legal' %}" style="color:var(--text-muted);text-decoration:none;">Aviso legal</a> ·
+          <a href="{% url 'politica_cookies' %}" style="color:var(--text-muted);text-decoration:none;">Cookies</a>
+        </p>
+        <p>&copy; 2026 Galley Pub · Candás, Asturias. Todos los derechos reservados.</p>
+        <p class="mt-2 small">
+          <a href="/admin/" style="color:var(--dark-border);" title="Admin">⚙️⚙️⚙️</a>
+        </p>
+      </div>
     </div>
   </footer>
 

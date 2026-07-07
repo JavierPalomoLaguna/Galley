@@ -1,24 +1,31 @@
 {% extends 'blog/base_blog.html' %}
 {% load static %}
-{% block meta_title %}Blog de Desarrollo Web y Marketing Digital | Código Vivo Studio{% endblock %}
-{% block meta_description %}Consejos sobre desarrollo web, tiendas online y posicionamiento SEO para restaurantes y comercios.{% endblock %}
-{% block og_title %}Blog de Desarrollo Web y Marketing Digital | Código Vivo Studio{% endblock %}
-{% block og_description %}Consejos sobre desarrollo web, tiendas online y posicionamiento SEO para restaurantes y comercios.{% endblock %}
-{% block twitter_title %}Blog de Desarrollo Web y Marketing Digital | Código Vivo Studio{% endblock %}
-{% block twitter_description %}Consejos sobre desarrollo web, tiendas online y posicionamiento SEO para restaurantes y comercios.{% endblock %}
+{% block meta_title %}Blog de Galley | Coctelería, Novedades y Tendencias{% endblock %}
+{% block meta_description %}Descubre artículos sobre cócteles, tendencias en coctelería, novedades de Galley Pub y consejos para disfrutar de una buena copa en Candás.{% endblock %}
 
 {% block content %}
+
+<!-- HERO HEADER -->
+<div class="blog-hero">
+  <div class="container">
+    <h1>Blog</h1>
+    <p>Cócteles, novedades y lo que pasa en Galley</p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
 <div class="blog-container">
 
-  <!-- CABECERA -->
-  <div class="blog-header" style="text-align: center;">
-    <h1>Blog</h1>
-    <p>Cócteles, novedades y todo lo que pasa en Galley</p>
-    <!-- CATEGORÍAS -->
+  <!-- CATEGORÍAS -->
+  <div style="text-align: center; margin-bottom: 50px;">
     <div class="blog-categorias">
-      <a href="{% url 'blog' %}" class="categoria-tag">Todos</a>
+      <a href="{% url 'blog' %}" class="categoria-tag {% if not categoria %}active{% endif %}">
+        <i class="fas fa-list me-2"></i>Todos
+      </a>
       {% for categoria in categorias_unicas %}
-        <a href="{% url 'categorias' categoria.id %}" class="categoria-tag">{{ categoria.nombre }}</a>
+        <a href="{% url 'categorias' categoria.id %}" class="categoria-tag">
+          {{ categoria.nombre }}
+        </a>
       {% endfor %}
     </div>
   </div>
@@ -27,29 +34,49 @@
   <div class="blog-grid">
     {% for post in posts %}
     <a href="{% url 'post_detail' post.id %}" class="blog-card">
+      
       {% if post.imagen %}
         <div class="blog-card-imagen">
           <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" loading="lazy">
         </div>
       {% else %}
         <div class="blog-card-imagen blog-card-sin-imagen">
-          <span>📝</span>
+          <i class="fas fa-pen-fancy"></i>
         </div>
       {% endif %}
+
       <div class="blog-card-contenido">
         <div class="blog-card-meta">
-          {{ post.created|date:"d/m/Y" }} · 
-          {% for cat in post.categorias.all %}{{ cat.nombre }}{% endfor %}
+          <i class="fas fa-calendar-alt me-1"></i>{{ post.created|date:"d/m/Y" }} 
+          {% if post.categorias.all %}
+            <span style="margin: 0 4px;">·</span>
+            {% for cat in post.categorias.all %}
+              {{ cat.nombre }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
+
         <h2>{{ post.titulo }}</h2>
-        <p>{{ post.contenido|truncatechars:120 }}</p>
-        <span class="blog-leer-mas">Leer más →</span>
+        
+        <p>{{ post.contenido|truncatechars:160 }}</p>
+
+        <span class="blog-leer-mas">
+          Leer más <i class="fas fa-arrow-right"></i>
+        </span>
       </div>
+
     </a>
+    {% empty %}
+      <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+        <p>No hay artículos disponibles en esta categoría.</p>
+        <a href="{% url 'blog' %}" style="color: var(--gold); text-decoration: none; font-weight: 700;">
+          Volver a todos los artículos →
+        </a>
+      </div>
     {% endfor %}
   </div>
 
 </div>
-{% endblock %}
 
+{% endblock %}
 
