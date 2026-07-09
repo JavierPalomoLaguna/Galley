@@ -7,7 +7,7 @@ SECRET_KEY = config('SECRET_KEY')
 ENV = config('DJANGO_ENV', default='local')
 SHOW_ERROR_PAGES = config('SHOW_ERROR_PAGES', default='False').lower() == 'true'
 
-SITE_ID = 1
+SITE_ID = 2
 
 if ENV == 'production':
     DEBUG = False
@@ -30,9 +30,9 @@ if ENV == 'production':
     # Configuración automática del Site para producción
     try:
         from django.contrib.sites.models import Site
-        site = Site.objects.get(id=1)
-        site.domain = 'codigovivostudio.cloud'
-        site.name = 'Código Vivo Studio'
+        site = Site.objects.get(id=2)
+        site.domain = 'galleypub.es'
+        site.name = 'Galley Pub'
         site.save()
     except:
         pass  # Se creará con el comando de setup
@@ -62,9 +62,9 @@ else:
     # Configuración automática del Site para desarrollo
     try:
         from django.contrib.sites.models import Site
-        site = Site.objects.get(id=1)
+        site = Site.objects.get(id=2)
         site.domain = 'localhost:8000'
-        site.name = 'Código Vivo Studio - Desarrollo'
+        site.name = 'Galley Pub - Desarrollo'
         site.save()
     except:
         pass  # Se creará con el comando de setup
