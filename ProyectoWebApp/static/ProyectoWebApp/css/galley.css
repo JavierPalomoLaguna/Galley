@@ -166,10 +166,21 @@ body {
 
 /* ── SEPARADOR ── */
 .gold-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 70px 0 !important;
+    padding: 0 !important;
+    height: auto;
+}
+
+.gold-divider::before {
+    content: '';
+    display: block;
     height: 1px;
+    width: 300px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 70px auto;
-    max-width: 300px;
 }
 
 /* ── SECCIONES ── */
