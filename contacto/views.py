@@ -3,6 +3,7 @@ Vistas del módulo de contacto. Incluye manejo robusto de errores y logging.
 """
 
 import logging
+from decouple import config
 from django.shortcuts import render
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.core.exceptions import ValidationError
@@ -15,6 +16,7 @@ from .forms import FormularioContacto
 from .models import MensajeContacto
 
 logger = logging.getLogger(__name__)
+ENV = config('DJANGO_ENV', default='local')
 
 
 @require_http_methods(["GET", "POST"])
@@ -79,6 +81,7 @@ def contacto(request):
                     raise
                 
                 # Enviar email al administrador
+                email_enviado = False
                 try:
                     asunto = f"📧 Nuevo mensaje de contacto desde {nombre}"
                     
@@ -91,8 +94,11 @@ def contacto(request):
                         f"Enviado desde: {request.META.get('REMOTE_ADDR', 'IP desconocida')}"
                     )
                     
+                    # DEBUG: Log de configuración de email
+                    logger.debug(f"Intentando enviar email desde {settings.EMAIL_HOST_USER} a ['galleypub@galleypub.es']")
+                    
                     # Enviar mail con manejo de excepciones
-                    send_mail(
+                    resultado = send_mail(
                         subject=asunto,
                         message=mensaje_texto,
                         from_email=settings.EMAIL_HOST_USER,
@@ -100,19 +106,22 @@ def contacto(request):
                         fail_silently=False,
                     )
                     
-                    logger.info(f"Email de contacto enviado: {email}")
+                    email_enviado = True
+                    logger.info(f"Email de contacto enviado exitosamente: {email} (resultado: {resultado})")
                     mensaje_exito = "✅ Mensaje enviado correctamente. Te responderemos pronto."
                 
                 except Exception as e:
                     # Email falló, pero el mensaje está guardado en BD
                     logger.error(
-                        f"Error al enviar email de contacto de {email}: {str(e)}",
+                        f"❌ ERROR al enviar email de contacto de {email}: {str(e)} | "
+                        f"HOST: {settings.EMAIL_HOST} | USER: {settings.EMAIL_HOST_USER} | PORT: {settings.EMAIL_PORT} | SSL: {settings.EMAIL_USE_SSL}",
                         exc_info=True,
                         extra={'request': request}
                     )
-                    # No mostramos error al usuario para no exponerlo detalles de email
-                    # Pero dejamos saber que el mensaje se guardó
-                    mensaje_exito = "Mensaje recibido. Nos pondremos en contacto pronto."
+                    # El usuario ve que el mensaje se guardó, pero el admin sabe que el email falló
+                    mensaje_exito = f"Mensaje recibido (ID: {mensaje.id}). El email falló - revisa los logs."
+                    if ENV != 'production':
+                        mensaje_exito += f"\n\nDETALLE DEL ERROR (desarrollo): {str(e)}"
         
         except ValidationException as e:
             logger.warning(f"Error de validación: {str(e)}")
