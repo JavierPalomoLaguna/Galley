@@ -102,7 +102,7 @@ def contacto(request):
                         subject=asunto,
                         message=mensaje_texto,
                         from_email=settings.EMAIL_HOST_USER,
-                        recipient_list=['jpalomolaguna@gmail.com'],
+                        recipient_list=['contacto@codigovivostudio.cloud'],
                         fail_silently=False,
                     )
                     

@@ -15,8 +15,8 @@ class Command(BaseCommand):
         parser.add_argument(
             '--recipient',
             type=str,
-            default='galleypub@galleypub.es',
-            help='Email destino para la prueba (default: galleypub@galleypub.es)'
+            default='contacto@codigovivostudio.cloud',
+            help='Email destino para la prueba (default: contacto@codigovivostudio.cloud)'
         )
 
     def handle(self, *args, **options):
